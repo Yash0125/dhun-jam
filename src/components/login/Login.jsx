@@ -34,24 +34,28 @@ const Login = ({ onLogin }) => {
 
   return (
     <div className="login-container">
-      <h1>Venue Admin Login</h1>
-      <label>
-        Username:
+      <h1 className="login-title">Venue Admin Login</h1>
+      <label htmlFor="username">
         <input
           type="text"
+          id="username"
+          placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
       </label>
-      <label>
-        Password:
+      <label htmlFor="password">
         <input
           type="password"
+          id="password"
+          placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
       </label>
-      <button onClick={handleLogin}>Sign In</button>
+
+      <button className="signin-btn" onClick={handleLogin}>Sign In</button>
+      <p>New Registration ?</p>
     </div>
   );
 };
