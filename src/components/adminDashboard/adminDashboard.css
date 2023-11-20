@@ -1,0 +1,32 @@
+.bar-graph {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.bar {
+  width: 20px;
+  background-color: #3498db;
+  margin-right: 10px;
+  text-align: center;
+  margin-left: 15px;
+  border: radius top 20px;
+}
+
+.bar span {
+  color: white;
+  margin-top: 5px;
+  font-size: 12px;
+}
+
+.graph-container {
+  border-left: 1px solid black;
+  border-bottom: 1px solid black;
+  min-height: 200px;
+  max-width: 280px;
+  display: flex;
+  width: 50%;
+  margin-left: 25%;
+}
