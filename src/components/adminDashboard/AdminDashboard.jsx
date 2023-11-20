@@ -32,7 +32,6 @@ const AdminDashboard = ({ token }) => {
             amount.category_10,
           ]);
           setIsChargingCustomers(charge_customers);
-          console.log(adminData);
         } else {
           // Handle error
           console.log("error in fetchAdminDetails");
@@ -115,7 +114,6 @@ const AdminDashboard = ({ token }) => {
         console.log("handlesave");
       }
     } catch (error) {
-      
       console.log("handlesave", error);
     }
   };
@@ -166,33 +164,29 @@ const AdminDashboard = ({ token }) => {
             onChange={(e) =>
               handleCustomAmountChange(parseInt(e.target.value, 10))
             }
-            
           />
         </div>
 
-
         <div className="admindashboard-regular-container">
-          <p className="admindashboard-regular-text">Regular song request amounts, from high to low-</p>
+          <p className="admindashboard-regular-text">
+            Regular song request amounts, from high to low-
+          </p>
           <div className="admindashboard-regular-input-box">
-
-          
-          {regularAmounts.map((amount, index) => (
-            <input
-            className="admindashboard-regular-input"
-              key={index}
-              id=""
-              type="number"
-              value={amount}
-              onChange={(e) =>
-                handleRegularAmountChange(index, parseInt(e.target.value, 10))
-              }
-            />
-          ))}
+            {regularAmounts.map((amount, index) => (
+              <input
+                className="admindashboard-regular-input"
+                key={index}
+                id=""
+                type="number"
+                value={amount}
+                onChange={(e) =>
+                  handleRegularAmountChange(index, parseInt(e.target.value, 10))
+                }
+              />
+            ))}
           </div>
         </div>
-
       </div>
-
 
       {isChargingCustomers && (
         <div className="graph-container">
@@ -204,18 +198,20 @@ const AdminDashboard = ({ token }) => {
                   key={key}
                   className="bar"
                   style={{ height: `${value / 5}px` }}
-                >
-                </div>
+                ></div>
               ))}
           </div>
         </div>
       )}
       <div className="save-btn-container">
-      <button className="save-btn" onClick={handleSave} disabled={!isSaveButtonEnabled}>
-        Save
-      </button>
+        <button
+          className="save-btn"
+          onClick={handleSave}
+          disabled={!isSaveButtonEnabled}
+        >
+          Save
+        </button>
       </div>
-      
     </div>
   );
 };
