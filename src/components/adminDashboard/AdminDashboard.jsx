@@ -43,6 +43,7 @@ const AdminDashboard = ({ token }) => {
     };
 
     fetchAdminDetails();
+    // eslint-disable-next-line
   }, [token]);
 
   const handleCustomAmountChange = (value) => {
@@ -111,68 +112,88 @@ const AdminDashboard = ({ token }) => {
 
         console.log("Updated Admin Data:", adminData);
       } else {
-        // Handle error
         console.log("handlesave");
       }
     } catch (error) {
-      // Handle network error
+      
       console.log("handlesave", error);
     }
   };
 
   return (
-    <div>
-      <h1>Admin Dashboard</h1>
-      <div>
-        <p>Social: {adminData.name}</p>
-        <p>Location: {adminData.location}</p>
+    <div className="admindashboard-container">
+      <h1 className="admindashboard-title">Social, Hebbal on Dhun Jam</h1>
+      <div className="admindashboard-requests">
+        <p className="admindashboard-request">
+          Do you want to charge your customers for requesting songs?
+        </p>
+
+        <div className="admindashboard-requests-input">
+          <label htmlFor="chargeYes">
+            <input
+              type="radio"
+              id="chargeYes"
+              value="yes"
+              checked={isChargingCustomers}
+              onChange={() => handleChargeCustomersChange("yes")}
+            />
+            Yes
+          </label>
+          <label htmlFor="chargeNo">
+            <input
+              type="radio"
+              id="chargeNo"
+              value="no"
+              checked={!isChargingCustomers}
+              onChange={() => handleChargeCustomersChange("no")}
+            />
+            No
+          </label>
+        </div>
       </div>
       <div>
-        <p>Charge customers for song requests:</p>
-        <label>
+        <div className="admindashboard-custom-request-container">
+          <label
+            htmlFor="customAmountInput"
+            className="admindashboard-custom-request"
+          >
+            Custom song request amount:
+          </label>
           <input
-            type="radio"
-            value="yes"
-            checked={isChargingCustomers}
-            onChange={() => handleChargeCustomersChange("yes")}
-          />
-          Yes
-        </label>
-        <label>
-          <input
-            type="radio"
-            value="no"
-            checked={!isChargingCustomers}
-            onChange={() => handleChargeCustomersChange("no")}
-          />
-          No
-        </label>
-      </div>
-      <div>
-        <p>Custom song request amount:</p>
-        <input
-          type="number"
-          value={customAmount}
-          onChange={(e) =>
-            handleCustomAmountChange(parseInt(e.target.value, 10))
-          }
-        />
-        <p>Regular song request amounts:</p>
-        {regularAmounts.map((amount, index) => (
-          <input
-            key={index}
             type="number"
-            value={amount}
+            id="customAmountInput"
+            value={customAmount}
             onChange={(e) =>
-              handleRegularAmountChange(index, parseInt(e.target.value, 10))
+              handleCustomAmountChange(parseInt(e.target.value, 10))
             }
+            
           />
-        ))}
+        </div>
+
+
+        <div className="admindashboard-regular-container">
+          <p className="admindashboard-regular-text">Regular song request amounts, from high to low-</p>
+          <div className="admindashboard-regular-input-box">
+
+          
+          {regularAmounts.map((amount, index) => (
+            <input
+            className="admindashboard-regular-input"
+              key={index}
+              id=""
+              type="number"
+              value={amount}
+              onChange={(e) =>
+                handleRegularAmountChange(index, parseInt(e.target.value, 10))
+              }
+            />
+          ))}
+          </div>
+        </div>
+
       </div>
 
-      <button onClick={handleSave} disabled={!isSaveButtonEnabled}>
-        Save
-      </button>
+
       {isChargingCustomers && (
         <div className="graph-container">
           <div className="bar-graph">
@@ -184,17 +205,19 @@ const AdminDashboard = ({ token }) => {
                   className="bar"
                   style={{ height: `${value / 5}px` }}
                 >
-                  <span>{value}</span>
                 </div>
               ))}
           </div>
         </div>
       )}
+      <div className="save-btn-container">
+      <button className="save-btn" onClick={handleSave} disabled={!isSaveButtonEnabled}>
+        Save
+      </button>
+      </div>
+      
     </div>
   );
 };
 
 export default AdminDashboard;
-
-// DJ@4
-// Dhunjam@2023
